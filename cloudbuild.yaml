@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/yarn'
+  args: ['install', '--ignore-engines']
+  dir: 'functions/autodeploy'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions', 'deploy', 'external_api_req', '--trigger-http', '--runtime', 'python37', '--retry', '--region=asia-northeast1', '--memory', '256', '--timeout', '540', '--max-instances', '1', '--source', 'https://source.developers.google.com/projects/sonorous-bounty-281409/repos/github_t-oyama772_function-externalapi/moveable-aliases/master/paths//']
+  dir: 'functions/autodeploy'

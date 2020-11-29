@@ -1,4 +1,6 @@
 import requests
+from google.cloud import storage
+
 def external_api_req(request):
     """Responds to any HTTP request.
     Args:
@@ -8,6 +10,11 @@ def external_api_req(request):
         Response object using
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
+
+    storage_client = storage.Client()
+    bucket = storage_client.bucket('from_gcf')
+    print('Bucket {} get.'.format(bucket.name))
+
     request_json = request.get_json()
     if request.args and 'message' in request.args:
         return request.args.get('message')

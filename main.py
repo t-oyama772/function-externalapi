@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime, timedelta, timezone
 from google.cloud import storage
 
 def external_api_req(request):
@@ -11,8 +12,11 @@ def external_api_req(request):
         `make_response <http://flask.pocoo.org/docs/1.0/api/#flask.Flask.make_response>`.
     """
 
+    JST = timezone(timedelta(hours=+9), 'JST')
+    dt_now = datetime.now(JST)
+
     bucket_name = 'from_gcf'
-    file_name = 'test.txt'
+    file_name = 'test_' + dt_now + '.txt'
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     # bucket = storage_client.get_bucket(bucket_name)

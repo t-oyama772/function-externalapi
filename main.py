@@ -17,7 +17,7 @@ def external_api_req(request):
     dt_now_str = dt_now.strftime('%Y%m%d-%H%M%S')
 
     bucket_name = 'from_gcf'
-    file_name = 'test_' + dt_now + '.txt'
+    file_name = 'test_' + dt_now_str + '.txt'
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     # bucket = storage_client.get_bucket(bucket_name)

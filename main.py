@@ -14,6 +14,7 @@ def external_api_req(request):
 
     JST = timezone(timedelta(hours=+9), 'JST')
     dt_now = datetime.now(JST)
+    dt_now_str = dt_now.strftime('%Y%m%d-%H%M%S')
 
     bucket_name = 'from_gcf'
     file_name = 'test_' + dt_now + '.txt'
